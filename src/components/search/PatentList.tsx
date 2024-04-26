@@ -20,7 +20,7 @@ const getFamilyJurisdiction = (hit: PatentHit) => {
 const DocumentDisplayKey = ({ doc }: { doc: { jurisdiction: string; doc_number: string; kind: string } }) => {
   const flagUrl = `https://static.lens.org/lens/9.1.3/img/flags/${doc.jurisdiction}.png`
   return (
-    <div className="flex gap-2 items-center">
+    <div className="flex gap-1 items-center">
       <span className="h-[13px]">
         <img className="max-h-full" src={flagUrl} alt={doc.jurisdiction} />
       </span>
