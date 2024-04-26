@@ -24,10 +24,11 @@ export function PatentListItem({ hit, zebra }: { hit: PatentHit; zebra?: boolean
   const [isExpanded, setIsExpanded] = useState(false)
   const [isShowingClaims, setIsShowingClaims] = useState(false)
 
-  console.log(hit.document.family)
-  const className = zebra ? '' : 'bg-slate-100 dark:bg-[#26323b]'
   return (
-    <div key={hit.document.record_lens_id} className={cn('p-4 flex flex-col gap-4', className)}>
+    <div
+      key={hit.document.record_lens_id}
+      className={cn('p-4 flex flex-col gap-4', { 'bg-slate-100 dark:bg-[#26323b]': zebra })}
+    >
       <Link href={`/patent/${hit.document.record_lens_id}`}>
         <h4 className="text-lg">{getTitle(hit)}</h4>
       </Link>
