@@ -99,13 +99,11 @@ function PatentBody({ hit }: { hit: PatentHit }) {
             </div>
             <div className={cn('line-clamp-6 flex flex-col', { hidden: !isShowingClaims })}>
               <ul className="list-decimal pl-6">
-                {hit.document.claim.en?.map((en, i) => {
-                  return (
-                    <li key={i} className="text-sm">
-                      {en.text}
-                    </li>
-                  )
-                })}
+                {hit.document.claim.en?.map((en, i) => (
+                  <li key={i} className="text-sm">
+                    {en.text}
+                  </li>
+                ))}
               </ul>
             </div>
           </>
@@ -117,38 +115,32 @@ function PatentBody({ hit }: { hit: PatentHit }) {
         <div className="flex flex-col">
           <h5 className="font-semibold">Owners:</h5>
           <ul className="list-disc pl-6">
-            {hit.document.owner.map((owner) => {
-              return (
-                <li key={owner.name} className="text-sm">
-                  {owner.name}
-                </li>
-              )
-            })}
+            {hit.document.owner.map((owner) => (
+              <li key={owner.name} className="text-sm">
+                {owner.name}
+              </li>
+            ))}
           </ul>
         </div>
       )}
       <div className="flex flex-col">
         <h5 className="font-semibold">Applicants:</h5>
         <ul className="list-disc pl-6">
-          {hit.document.applicant.map((applicant) => {
-            return (
-              <li key={applicant.name} className="text-sm">
-                {applicant.name}
-              </li>
-            )
-          })}
+          {hit.document.applicant.map((applicant) => (
+            <li key={applicant.name} className="text-sm">
+              {applicant.name}
+            </li>
+          ))}
         </ul>
       </div>
       <div className="flex flex-col">
         <h5 className="font-semibold">Inventors:</h5>
         <ul className="list-disc pl-6">
-          {hit.document.inventor.map((inventor) => {
-            return (
-              <li key={inventor.name} className="text-sm">
-                {inventor.name}
-              </li>
-            )
-          })}
+          {hit.document.inventor.map((inventor) => (
+            <li key={inventor.name} className="text-sm">
+              {inventor.name}
+            </li>
+          ))}
         </ul>
       </div>
       {hit.document['class_cpc.inv_symbol'].length > 0 && (
