@@ -24,7 +24,7 @@ export function PatentListItem({ hit, zebra }: { hit: PatentHit; zebra?: boolean
   const [isExpanded, setIsExpanded] = useState(false)
   const [isShowingClaims, setIsShowingClaims] = useState(false)
 
-  console.log(hit)
+  console.log(hit.document.family)
   const className = zebra ? '' : 'bg-slate-100 dark:bg-[#26323b]'
   return (
     <div key={hit.document.record_lens_id} className={cn('p-4 flex flex-col gap-2', className)}>
@@ -34,15 +34,30 @@ export function PatentListItem({ hit, zebra }: { hit: PatentHit; zebra?: boolean
       <div className="flex flex-wrap">
         <PatentPills doc={hit.document} />
       </div>
-      <div className="flex flex-col py-4">
-        <div className="text-sm">{hit.document.publication_type}</div>
-        <div className="text-sm">
-          Published: {hit.document.date_published || hit.document.year_published || 'unknown'}
+      <div className="flex flex-col py-4 gap-1">
+        <div className="flex flex-wrap gap-x-4 gap-y-1">
+          <div className="text-sm">
+            {hit.document.jurisdiction} {hit.document.doc_number}
+          </div>
+          <div className="text-sm">{hit.document.publication_type}</div>
+          <div className="text-sm">
+            Family: {hit.document.family.simple.size}s / {hit.document.family.extended.size}ex
+          </div>
+          <div className="text-sm">
+            Family: {hit.document.family.simple.size}s / {hit.document.family.extended.size}ex
+          </div>
+          <div className="text-sm">Legal Status: {hit.document.legal_status.patent_status}</div>
+          <div className="text-sm">Application Number: {hit.document.application_reference.doc_number}</div>
+          <div className="text-sm">Filed: {hit.document.application_reference.date.toString()}</div>
+          <div className="text-sm">
+            Published: {hit.document.date_published || hit.document.year_published || 'unknown'}
+          </div>
+          <div className="text-sm">Earliest Priority: {hit.document.earliest_priority_claim_date.toString()}</div>
         </div>
-        <div className="text-sm">Inventors: {hit.document.inventor?.map((inventor) => inventor.name).join(', ')}</div>
         <div className="text-sm">
           Applicants: {hit.document.applicant?.map((applicant) => applicant.name).join(', ')}
         </div>
+        <div className="text-sm">Inventors: {hit.document.inventor?.map((inventor) => inventor.name).join(', ')}</div>
       </div>
       <div className={cn('flex overflow-hidden items-stretch gap-6 border-t py-4', { hidden: !isExpanded })}>
         <div className="flex flex-col gap-4">
@@ -160,13 +175,13 @@ export function PatentListItem({ hit, zebra }: { hit: PatentHit; zebra?: boolean
               <div className="py-2">
                 <div className="text-sm">Publication: {hit.document.date_published}</div>
                 <div className="text-sm">
-                  {hit.document.jurisdiction} {hit.document.application_reference.doc_number}
+                  {hit.document.jurisdiction} {hit.document.doc_number}
                 </div>
               </div>
               <div className="py-2">
                 <div className="text-sm">Application: {hit.document.application_reference.date.toString()}</div>
                 <div className="text-sm">
-                  {hit.document.jurisdiction} {hit.document.application_reference.doc_number}
+                  {hit.document.jurisdiction} {hit.document.doc_number}
                 </div>
               </div>
               {hit.document.priority_claim.map((priority) => (
