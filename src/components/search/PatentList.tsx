@@ -71,32 +71,36 @@ export function PatentListItem({ hit, zebra }: { hit: PatentHit; zebra?: boolean
             })}
           </ul>
         </div>
-        <div className="flex flex-col gap-1">
-          <h5 className="font-semibold">CPC Classifications:</h5>
-          <div className="flex flex-wrap gap-1">
-            {hit.document['class_cpc.inv_symbol'].map((symbol) => (
-              <div
-                key={symbol}
-                className="text-sm bg-accent text-accent-foreground border-accent-foreground border px-2 py-0.5 rounded-md"
-              >
-                {symbol}
-              </div>
-            ))}
+        {hit.document['class_cpc.inv_symbol'].length > 0 && (
+          <div className="flex flex-col gap-1">
+            <h5 className="font-semibold">CPC Classifications:</h5>
+            <div className="flex flex-wrap gap-1">
+              {hit.document['class_cpc.inv_symbol'].map((symbol) => (
+                <div
+                  key={symbol}
+                  className="text-sm bg-accent text-accent-foreground border-accent-foreground border px-2 py-0.5 rounded-md"
+                >
+                  {symbol}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="flex flex-col gap-1">
-          <h5 className="font-semibold">IPC Classifications:</h5>
-          <div className="flex flex-wrap gap-1">
-            {hit.document['class_ipcr.inv_symbol'].map((symbol) => (
-              <div
-                key={symbol}
-                className="text-sm bg-accent text-accent-foreground border-accent-foreground border px-2 py-0.5 rounded-md"
-              >
-                {symbol}
-              </div>
-            ))}
+        )}
+        {hit.document['class_ipcr.inv_symbol'].length > 0 && (
+          <div className="flex flex-col gap-1">
+            <h5 className="font-semibold">IPC Classifications:</h5>
+            <div className="flex flex-wrap gap-1">
+              {hit.document['class_ipcr.inv_symbol'].map((symbol) => (
+                <div
+                  key={symbol}
+                  className="text-sm bg-accent text-accent-foreground border-accent-foreground border px-2 py-0.5 rounded-md"
+                >
+                  {symbol}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
       <button onClick={() => setIsOpen(!isOpen)} className="w-full p-2 flex justify-center items-center">
         <ChevronDown className={cn('transition-transform', { 'rotate-180': isOpen })} />
