@@ -55,7 +55,7 @@ function MetaInfo({ hit }: { hit: PatentHit }) {
       <div className="flex flex-col gap-1">
         <div className="flex flex-wrap gap-x-4 gap-y-1">
           <div className="text-sm">
-            {hit.document.jurisdiction} {hit.document.doc_number}
+            {hit.document.jurisdiction} {hit.document.doc_number} {hit.document.kind}
           </div>
           <div className="text-sm">{hit.document.publication_type}</div>
           <div className="text-sm">
@@ -93,7 +93,7 @@ function PatentBody({ hit }: { hit: PatentHit }) {
             <div>
               <button
                 onClick={() => setIsShowingClaims(!isShowingClaims)}
-                className="bg-primary text-primary-foreground text-sm rounded py-1 px-2 w-[93px]"
+                className="bg-primary text-primary-foreground text-sm rounded py-1 px-2"
               >
                 {isShowingClaims ? 'Hide' : 'Show'} Claims
               </button>
@@ -194,7 +194,7 @@ function ArticleSection({ hit }: { hit: PatentHit }) {
           <div className="py-2">
             <div className="text-sm">Publication: {dayjs(hit.document.date_published).format('MMM D, YYYY')}</div>
             <div className="text-sm">
-              {hit.document.jurisdiction} {hit.document.doc_number}
+              {hit.document.jurisdiction} {hit.document.doc_number} {hit.document.kind}
             </div>
           </div>
           <div className="py-2">
@@ -202,14 +202,14 @@ function ArticleSection({ hit }: { hit: PatentHit }) {
               Application: {dayjs(hit.document.application_reference.date).format('MMM D, YYYY')}
             </div>
             <div className="text-sm">
-              {hit.document.jurisdiction} {hit.document.doc_number}
+              {hit.document.jurisdiction} {hit.document.doc_number} {hit.document.kind}
             </div>
           </div>
           {hit.document.priority_claim.map((priority) => (
             <div className="py-2">
               <div className="text-sm">Priority: {dayjs(priority.date).format('MMM D, YYYY')}</div>
               <div className="text-sm">
-                {priority.jurisdiction} {priority.doc_number}
+                {priority.jurisdiction} {priority.doc_number} {priority.kind}
               </div>
             </div>
           ))}
