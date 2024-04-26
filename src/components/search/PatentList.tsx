@@ -1,6 +1,5 @@
 import { cn } from '@/lib/utils'
 import { legalStatusColourScale } from '@/theme'
-import getUnicodeFlagIcon from 'country-flag-icons/unicode'
 import dayjs from 'dayjs'
 import { ChevronDown } from 'lucide-react'
 import { Link } from 'raviger'
@@ -18,8 +17,18 @@ const getFamilyJurisdiction = (hit: PatentHit) => {
   return [...jurisdictions]
 }
 
-const getDocumentDisplayKey = (doc: { jurisdiction: string; doc_number: string; kind: string }) => {
-  return `${getUnicodeFlagIcon(doc.jurisdiction)} ${doc.jurisdiction} ${doc.doc_number} ${doc.kind}`
+const DocumentDisplayKey = ({ doc }: { doc: { jurisdiction: string; doc_number: string; kind: string } }) => {
+  const flagUrl = `https://static.lens.org/lens/9.1.3/img/flags/${doc.jurisdiction}.png`
+  return (
+    <div className="flex gap-2 items-center">
+      <span className="h-[13px]">
+        <img className="max-h-full" src={flagUrl} alt={doc.jurisdiction} />
+      </span>
+      <div className="">
+        {doc.jurisdiction} {doc.doc_number} {doc.kind}
+      </div>
+    </div>
+  )
 }
 
 const removeNumberedListPrefix = (str: string) => {
@@ -39,16 +48,20 @@ function MetaInfo({ hit }: { hit: PatentHit }) {
       </div>
       <div className="flex flex-col gap-1">
         <div className="flex flex-wrap gap-x-3 gap-y-1">
-          <div className="text-sm">{getDocumentDisplayKey(hit.document)}</div>
+          <div className="text-sm">
+            <DocumentDisplayKey doc={hit.document} />
+          </div>
           <div className="text-sm">{hit.document.publication_type}</div>
           <div className="text-sm">
             Family: {hit.document.family.simple.size}s / {hit.document.family.extended.size}ex
           </div>
           <div className="text-sm">Family Jurisdictions: {getFamilyJurisdiction(hit).join(', ')}</div>
-          <div className="text-sm flex items-center gap-1">
+          <div className="text-sm flex items-center gap-2">
             Legal Status:
-            <div className="h-4 aspect-square rounded-full" style={{ backgroundColor: legalStatusColor }} />
-            {hit.document.legal_status.patent_status}
+            <div className="flex items-center gap-1">
+              <div className="h-[13px] aspect-square rounded-full" style={{ backgroundColor: legalStatusColor }} />
+              {hit.document.legal_status.patent_status}
+            </div>
           </div>
         </div>
         <div className="flex flex-wrap gap-x-3 gap-y-1">
@@ -191,18 +204,24 @@ function ArticleSection({ hit }: { hit: PatentHit }) {
         <div className="flex flex-col divide-y">
           <div className="py-2">
             <div className="text-sm">Publication: {dayjs(hit.document.date_published).format('MMM D, YYYY')}</div>
-            <div className="text-sm">{getDocumentDisplayKey(hit.document)}</div>
+            <div className="text-sm">
+              <DocumentDisplayKey doc={hit.document} />
+            </div>
           </div>
           <div className="py-2">
             <div className="text-sm">
               Application: {dayjs(hit.document.application_reference.date).format('MMM D, YYYY')}
             </div>
-            <div className="text-sm">{getDocumentDisplayKey(hit.document)}</div>
+            <div className="text-sm">
+              <DocumentDisplayKey doc={hit.document} />
+            </div>
           </div>
           {hit.document.priority_claim.map((priority) => (
             <div className="py-2">
               <div className="text-sm">Priority: {dayjs(priority.date).format('MMM D, YYYY')}</div>
-              <div className="text-sm">{getDocumentDisplayKey(priority)}</div>
+              <div className="text-sm">
+                <DocumentDisplayKey doc={priority} />
+              </div>
             </div>
           ))}
         </div>
