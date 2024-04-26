@@ -23,6 +23,7 @@ export function PatentList({ response }: { response: PatentSearchResponse }) {
 
 export function PatentListItem({ hit, zebra }: { hit: PatentHit; zebra?: boolean }) {
   const [isExpanded, setIsExpanded] = useState(false)
+  console.log(JSON.stringify(hit, null, 2))
   return (
     <div
       key={hit.document.record_lens_id}
@@ -150,7 +151,7 @@ function PatentBody({ hit }: { hit: PatentHit }) {
           <ul className="flex flex-wrap gap-2">
             {hit.document.class_cpc.map((cpc) => (
               <li
-                key={cpc.symbol + cpc.action_date}
+                key={cpc.symbol + cpc.sequence}
                 className="text-sm bg-accent text-accent-foreground border-accent-foreground border px-2 py-0.5 rounded-md"
               >
                 {cpc.symbol}
@@ -165,7 +166,7 @@ function PatentBody({ hit }: { hit: PatentHit }) {
           <ul className="flex flex-wrap gap-2">
             {hit.document.class_ipcr.map((ipcr) => (
               <li
-                key={ipcr.symbol + ipcr.action_date}
+                key={ipcr.symbol + ipcr.sequence}
                 className="text-sm bg-accent text-accent-foreground border-accent-foreground border px-2 py-0.5 rounded-md"
               >
                 {ipcr.symbol}
