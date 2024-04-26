@@ -8,41 +8,10 @@ import { PatentHit } from '../../models/PatentHit'
 import { PatentSearchResponse } from '../../models/PatentSearchResponse'
 import { PatentPills } from '../PatentPills'
 
-// eslint-disable-next-line react-refresh/only-export-components
-export const getTitle = (hit: PatentHit) => hit.document.title?.en?.at(0)?.text || ''
+const getTitle = (hit: PatentHit) => hit.document.title?.en?.at(0)?.text || ''
 
-export function PatentList({ response }: { response: PatentSearchResponse }) {
-  return (
-    <div className={'divide-y divide-solid border'}>
-      {response?.hits.map((hit, i) => {
-        const isEven = i % 2 === 0
-        return <PatentListItem hit={hit} zebra={isEven} />
-      })}
-    </div>
-  )
-}
-
-export function PatentListItem({ hit, zebra }: { hit: PatentHit; zebra?: boolean }) {
-  const [isExpanded, setIsExpanded] = useState(false)
-  console.log(JSON.stringify(hit, null, 2))
-  return (
-    <div
-      key={hit.document.record_lens_id}
-      className={cn('p-4 flex flex-col gap-4', { 'bg-slate-100 dark:bg-[#26323b]': zebra })}
-    >
-      <MetaInfo hit={hit} />
-      <div className={cn('flex overflow-hidden items-stretch gap-6 border-t py-4', { hidden: !isExpanded })}>
-        <PatentBody hit={hit} />
-        <ArticleSection hit={hit} />
-      </div>
-      <button
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full p-2 flex justify-center items-center hover:bg-accent"
-      >
-        <ChevronDown className={cn('transition-transform', { 'rotate-180': isExpanded })} />
-      </button>
-    </div>
-  )
+const getDocumentDisplayKey = (doc: { jurisdiction: string; doc_number: string; kind: string }) => {
+  return `${getUnicodeFlagIcon(doc.jurisdiction)} ${doc.jurisdiction} ${doc.doc_number} ${doc.kind}`
 }
 
 function MetaInfo({ hit }: { hit: PatentHit }) {
@@ -56,10 +25,7 @@ function MetaInfo({ hit }: { hit: PatentHit }) {
       </div>
       <div className="flex flex-col gap-1">
         <div className="flex flex-wrap gap-x-4 gap-y-1">
-          <div className="text-sm">
-            {getUnicodeFlagIcon(hit.document.jurisdiction)} {hit.document.jurisdiction} {hit.document.doc_number}{' '}
-            {hit.document.kind}
-          </div>
+          <div className="text-sm">{getDocumentDisplayKey(hit.document)}</div>
           <div className="text-sm">{hit.document.publication_type}</div>
           <div className="text-sm">
             Family: {hit.document.family.simple.size}s / {hit.document.family.extended.size}ex
@@ -196,31 +162,56 @@ function ArticleSection({ hit }: { hit: PatentHit }) {
         <div className="flex flex-col divide-y">
           <div className="py-2">
             <div className="text-sm">Publication: {dayjs(hit.document.date_published).format('MMM D, YYYY')}</div>
-            <div className="text-sm">
-              {getUnicodeFlagIcon(hit.document.jurisdiction)} {hit.document.jurisdiction} {hit.document.doc_number}{' '}
-              {hit.document.kind}
-            </div>
+            <div className="text-sm">{getDocumentDisplayKey(hit.document)}</div>
           </div>
           <div className="py-2">
             <div className="text-sm">
               Application: {dayjs(hit.document.application_reference.date).format('MMM D, YYYY')}
             </div>
-            <div className="text-sm">
-              {getUnicodeFlagIcon(hit.document.jurisdiction)} {hit.document.jurisdiction} {hit.document.doc_number}{' '}
-              {hit.document.kind}
-            </div>
+            <div className="text-sm">{getDocumentDisplayKey(hit.document)}</div>
           </div>
           {hit.document.priority_claim.map((priority) => (
             <div className="py-2">
               <div className="text-sm">Priority: {dayjs(priority.date).format('MMM D, YYYY')}</div>
-              <div className="text-sm">
-                {getUnicodeFlagIcon(priority.jurisdiction)} {priority.jurisdiction} {priority.doc_number}{' '}
-                {priority.kind}
-              </div>
+              <div className="text-sm">{getDocumentDisplayKey(priority)}</div>
             </div>
           ))}
         </div>
       </div>
+    </div>
+  )
+}
+
+export function PatentListItem({ hit, zebra }: { hit: PatentHit; zebra?: boolean }) {
+  const [isExpanded, setIsExpanded] = useState(false)
+  console.log(JSON.stringify(hit, null, 2))
+  return (
+    <div
+      key={hit.document.record_lens_id}
+      className={cn('p-4 flex flex-col gap-4', { 'bg-slate-100 dark:bg-[#26323b]': zebra })}
+    >
+      <MetaInfo hit={hit} />
+      <div className={cn('flex overflow-hidden items-stretch gap-6 border-t py-4', { hidden: !isExpanded })}>
+        <PatentBody hit={hit} />
+        <ArticleSection hit={hit} />
+      </div>
+      <button
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="w-full p-2 flex justify-center items-center hover:bg-accent"
+      >
+        <ChevronDown className={cn('transition-transform', { 'rotate-180': isExpanded })} />
+      </button>
+    </div>
+  )
+}
+
+export function PatentList({ response }: { response: PatentSearchResponse }) {
+  return (
+    <div className={'divide-y divide-solid border'}>
+      {response?.hits.map((hit, i) => {
+        const isEven = i % 2 === 0
+        return <PatentListItem hit={hit} zebra={isEven} />
+      })}
     </div>
   )
 }
