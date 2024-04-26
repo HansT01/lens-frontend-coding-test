@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils'
+import dayjs from 'dayjs'
 import { ChevronDown } from 'lucide-react'
 import { Link } from 'raviger'
 import { useState } from 'react'
@@ -62,11 +63,11 @@ function MetaInfo({ hit }: { hit: PatentHit }) {
           </div>
           <div className="text-sm">Legal Status: {hit.document.legal_status.patent_status}</div>
           <div className="text-sm">Application Number: {hit.document.application_reference.doc_number}</div>
-          <div className="text-sm">Filed: {hit.document.application_reference.date.toString()}</div>
+          <div className="text-sm">Filed: {dayjs(hit.document.application_reference.date).format('MMM D, YYYY')}</div>
+          <div className="text-sm">Published: {dayjs(hit.document.date_published).format('MMM D, YYYY')}</div>
           <div className="text-sm">
-            Published: {hit.document.date_published || hit.document.year_published || 'unknown'}
+            Earliest Priority: {dayjs(hit.document.earliest_priority_claim_date).format('MMM D, YYYY')}
           </div>
-          <div className="text-sm">Earliest Priority: {hit.document.earliest_priority_claim_date.toString()}</div>
         </div>
         <div className="text-sm">
           Applicants: {hit.document.applicant?.map((applicant) => applicant.name).join(', ')}
@@ -191,20 +192,22 @@ function ArticleSection({ hit }: { hit: PatentHit }) {
         <h5 className="font-semibold">History</h5>
         <div className="flex flex-col divide-y">
           <div className="py-2">
-            <div className="text-sm">Publication: {hit.document.date_published}</div>
+            <div className="text-sm">Publication: {dayjs(hit.document.date_published).format('MMM D, YYYY')}</div>
             <div className="text-sm">
               {hit.document.jurisdiction} {hit.document.doc_number}
             </div>
           </div>
           <div className="py-2">
-            <div className="text-sm">Application: {hit.document.application_reference.date.toString()}</div>
+            <div className="text-sm">
+              Application: {dayjs(hit.document.application_reference.date).format('MMM D, YYYY')}
+            </div>
             <div className="text-sm">
               {hit.document.jurisdiction} {hit.document.doc_number}
             </div>
           </div>
           {hit.document.priority_claim.map((priority) => (
             <div className="py-2">
-              <div className="text-sm">Priority: {priority.date.toString()}</div>
+              <div className="text-sm">Priority: {dayjs(priority.date).format('MMM D, YYYY')}</div>
               <div className="text-sm">
                 {priority.jurisdiction} {priority.doc_number}
               </div>
