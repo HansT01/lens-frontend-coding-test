@@ -10,6 +10,13 @@ import { PatentPills } from '../PatentPills'
 
 const getTitle = (hit: PatentHit) => hit.document.title?.en?.at(0)?.text || ''
 
+const getFamilyJurisdiction = (hit: PatentHit) => {
+  const jurisdictions = new Set<string>()
+  hit.document.family.simple.member.forEach((member) => jurisdictions.add(member.document_id.jurisdiction))
+  hit.document.family.extended.member.forEach((member) => jurisdictions.add(member.document_id.jurisdiction))
+  return [...jurisdictions]
+}
+
 const getDocumentDisplayKey = (doc: { jurisdiction: string; doc_number: string; kind: string }) => {
   return `${getUnicodeFlagIcon(doc.jurisdiction)} ${doc.jurisdiction} ${doc.doc_number} ${doc.kind}`
 }
@@ -35,6 +42,7 @@ function MetaInfo({ hit }: { hit: PatentHit }) {
           <div className="text-sm">
             Family: {hit.document.family.simple.size}s / {hit.document.family.extended.size}ex
           </div>
+          <div className="text-sm">Family Jurisdictions: {getFamilyJurisdiction(hit).join(', ')}</div>
           <div className="text-sm">Legal Status: {hit.document.legal_status.patent_status}</div>
         </div>
         <div className="flex flex-wrap gap-x-3 gap-y-1">
