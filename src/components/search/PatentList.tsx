@@ -14,6 +14,10 @@ const getDocumentDisplayKey = (doc: { jurisdiction: string; doc_number: string; 
   return `${getUnicodeFlagIcon(doc.jurisdiction)} ${doc.jurisdiction} ${doc.doc_number} ${doc.kind}`
 }
 
+const removeNumberedListPrefix = (str: string) => {
+  return str.replace(/^\d+\s*\.\s*/, '')
+}
+
 function MetaInfo({ hit }: { hit: PatentHit }) {
   return (
     <div className="flex flex-col gap-4">
@@ -71,7 +75,7 @@ function PatentBody({ hit }: { hit: PatentHit }) {
               <ul className="list-decimal pl-6">
                 {hit.document.claim.en?.map((en, i) => (
                   <li key={i} className="text-sm">
-                    {en.text}
+                    {removeNumberedListPrefix(en.text)}
                   </li>
                 ))}
               </ul>
