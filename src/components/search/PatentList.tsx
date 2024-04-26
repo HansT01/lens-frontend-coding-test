@@ -178,6 +178,7 @@ function PatentBody({ hit }: { hit: PatentHit }) {
 }
 
 function ArticleSection({ hit }: { hit: PatentHit }) {
+  // TODO: Missing document download and preview link
   return (
     <div className="shrink-0 w-[250px] flex flex-col gap-4">
       <div className="flex flex-col gap-2">
