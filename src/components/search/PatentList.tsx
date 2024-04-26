@@ -21,7 +21,9 @@ export function PatentList({ response }: { response: PatentSearchResponse }) {
 }
 
 export function PatentListItem({ hit, zebra }: { hit: PatentHit; zebra?: boolean }) {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpenPreview, setIsOpenPreview] = useState(false)
+  const [isShowingClaims, setIsShowingClaims] = useState(false)
+
   console.log(hit)
   const className = zebra ? '' : 'bg-slate-100 dark:bg-[#26323b]'
   return (
@@ -42,14 +44,42 @@ export function PatentListItem({ hit, zebra }: { hit: PatentHit; zebra?: boolean
           Applicants: {hit.document.applicant?.map((applicant) => applicant.name).join(', ')}
         </div>
       </div>
-      <div className={cn('flex flex-col overflow-hidden gap-2', { 'h-0': !isOpen })}>
+      <div className={cn('flex flex-col overflow-hidden gap-2', { hidden: !isOpenPreview })}>
         <div className="flex flex-col">
           <h5 className="font-semibold">Abstract:</h5>
           <div className="text-sm">{hit.document.abstract.en.map((en) => en.text)}</div>
         </div>
+        <div className="flex flex-col gap-1">
+          <h5 className="font-semibold">Claims:</h5>
+          {hit.document.claim.en !== undefined ? (
+            <>
+              <div>
+                <button
+                  onClick={() => setIsShowingClaims(!isShowingClaims)}
+                  className="bg-primary text-primary-foreground text-sm rounded px-2 py-1"
+                >
+                  Show Claims
+                </button>
+              </div>
+              <div className={cn('line-clamp-6 flex flex-col', { hidden: !isShowingClaims })}>
+                <ul className="list-decimal pl-6">
+                  {hit.document.claim.en?.map((en, i) => {
+                    return (
+                      <li key={i} className="text-sm">
+                        {en.text}
+                      </li>
+                    )
+                  })}
+                </ul>
+              </div>
+            </>
+          ) : (
+            <div className="text-sm">Information currently unavailable.</div>
+          )}
+        </div>
         <div className="flex flex-col">
           <h5 className="font-semibold">Applicants:</h5>
-          <ul>
+          <ul className="list-disc pl-6">
             {hit.document.applicant.map((applicant) => {
               return (
                 <li key={applicant.name} className="text-sm">
@@ -61,7 +91,7 @@ export function PatentListItem({ hit, zebra }: { hit: PatentHit; zebra?: boolean
         </div>
         <div className="flex flex-col">
           <h5 className="font-semibold">Inventors:</h5>
-          <ul>
+          <ul className="list-disc pl-6">
             {hit.document.inventor.map((inventor) => {
               return (
                 <li key={inventor.name} className="text-sm">
@@ -75,9 +105,9 @@ export function PatentListItem({ hit, zebra }: { hit: PatentHit; zebra?: boolean
           <div className="flex flex-col gap-1">
             <h5 className="font-semibold">CPC Classifications:</h5>
             <div className="flex flex-wrap gap-1">
-              {hit.document['class_cpc.inv_symbol'].map((symbol) => (
+              {hit.document['class_cpc.inv_symbol'].map((symbol, i) => (
                 <div
-                  key={symbol}
+                  key={i}
                   className="text-sm bg-accent text-accent-foreground border-accent-foreground border px-2 py-0.5 rounded-md"
                 >
                   {symbol}
@@ -90,9 +120,9 @@ export function PatentListItem({ hit, zebra }: { hit: PatentHit; zebra?: boolean
           <div className="flex flex-col gap-1">
             <h5 className="font-semibold">IPC Classifications:</h5>
             <div className="flex flex-wrap gap-1">
-              {hit.document['class_ipcr.inv_symbol'].map((symbol) => (
+              {hit.document['class_ipcr.inv_symbol'].map((symbol, i) => (
                 <div
-                  key={symbol}
+                  key={i}
                   className="text-sm bg-accent text-accent-foreground border-accent-foreground border px-2 py-0.5 rounded-md"
                 >
                   {symbol}
@@ -102,8 +132,8 @@ export function PatentListItem({ hit, zebra }: { hit: PatentHit; zebra?: boolean
           </div>
         )}
       </div>
-      <button onClick={() => setIsOpen(!isOpen)} className="w-full p-2 flex justify-center items-center">
-        <ChevronDown className={cn('transition-transform', { 'rotate-180': isOpen })} />
+      <button onClick={() => setIsOpenPreview(!isOpenPreview)} className="w-full p-2 flex justify-center items-center">
+        <ChevronDown className={cn('transition-transform', { 'rotate-180': isOpenPreview })} />
       </button>
     </div>
   )
