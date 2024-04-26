@@ -45,12 +45,12 @@ export function PatentListItem({ hit, zebra }: { hit: PatentHit; zebra?: boolean
         </div>
       </div>
       <div className={cn('flex overflow-hidden items-stretch gap-6', { hidden: !isOpenPreview })}>
-        <div className="flex flex-col gap-2">
-          <div className="flex flex-col">
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-2">
             <h5 className="font-semibold">Abstract:</h5>
             <div className="text-sm">{hit.document.abstract.en.map((en) => en.text)}</div>
           </div>
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-2">
             <h5 className="font-semibold">Claims:</h5>
             {hit.document.claim.en !== undefined ? (
               <>
@@ -117,9 +117,9 @@ export function PatentListItem({ hit, zebra }: { hit: PatentHit; zebra?: boolean
             </ul>
           </div>
           {hit.document['class_cpc.inv_symbol'].length > 0 && (
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-2">
               <h5 className="font-semibold">CPC Classifications:</h5>
-              <ul className="flex flex-wrap gap-1">
+              <ul className="flex flex-wrap gap-2">
                 {hit.document.class_cpc.map((cpc) => (
                   <li
                     key={cpc.symbol + cpc.action_date}
@@ -132,9 +132,9 @@ export function PatentListItem({ hit, zebra }: { hit: PatentHit; zebra?: boolean
             </div>
           )}
           {hit.document['class_ipcr.inv_symbol'].length > 0 && (
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-2">
               <h5 className="font-semibold">IPC Classifications:</h5>
-              <ul className="flex flex-wrap gap-1">
+              <ul className="flex flex-wrap gap-2">
                 {hit.document.class_ipcr.map((ipcr) => (
                   <li
                     key={ipcr.symbol + ipcr.action_date}
