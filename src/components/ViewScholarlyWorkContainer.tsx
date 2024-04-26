@@ -1,7 +1,7 @@
+import { ScholarHit } from '@/models/ScholarHit'
 import { usePathParams } from 'raviger'
 import { useScholar } from '../api'
 import { Loading } from './Loading'
-import { ScholarHit } from '@/models/ScholarHit'
 import { ViewScholarlyWork } from './ViewScholarlyWork'
 
 export function ViewScholarlyWorkContainer() {

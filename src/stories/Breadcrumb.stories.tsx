@@ -1,10 +1,10 @@
 import {
-  Breadcrumb as Component,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
-  BreadcrumbSeparator
+  BreadcrumbSeparator,
+  Breadcrumb as Component
 } from '@/components/ui/Breadcrumb'
 
 export default {

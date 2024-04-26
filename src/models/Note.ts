@@ -1,6 +1,6 @@
+import { CollectionType } from './CollectionType'
 import { SharedType } from './SharedType'
 import { User } from './User'
-import { CollectionType } from './CollectionType'
 
 export interface Note {
   id: number

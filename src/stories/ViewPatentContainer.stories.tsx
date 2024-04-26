@@ -1,7 +1,7 @@
 import { ViewPatentContainer as Component } from '@/components/ViewPatentContainer'
-import { within } from '@storybook/test'
-import { Meta, StoryObj } from '@storybook/react'
 import { withQueryClient } from '@/decorators'
+import { Meta, StoryObj } from '@storybook/react'
+import { within } from '@storybook/test'
 
 import { getDefaultTestParameters } from '@/components/handlers'
 

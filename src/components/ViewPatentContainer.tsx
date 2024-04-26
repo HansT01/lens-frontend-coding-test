@@ -1,8 +1,8 @@
-import { usePathParams } from 'raviger'
 import { usePatents } from '@/api'
-import { Loading } from '@/components/Loading'
 import { ErrorPage } from '@/components/Error'
+import { Loading } from '@/components/Loading'
 import { PatentDocument } from '@/models/PatentDocument'
+import { usePathParams } from 'raviger'
 import { ViewPatent } from './ViewPatent'
 
 export function ViewPatentContainer() {

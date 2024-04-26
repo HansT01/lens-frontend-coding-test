@@ -1,15 +1,15 @@
-import { FacetFilterGroup } from '../FacetFilterGroup'
-import { ScholarList } from './ScholarList'
-import { Loading } from '../Loading'
-import { useLensStore } from '../../store'
-import { SelectView } from './SelectView'
 import { ScholarSearchResponse } from '../../models/ScholarSearchResponse'
 import { ScholarTermsAggregationKey } from '../../models/ScholarTermsAggregationKey'
-import { TermsAggregation } from '../../models/TermsAggregation'
 import { ScholarTermsAggregationLabels } from '../../models/ScholarTermsAggregationLabels'
-import { TotalRelation } from '../../models/TotalRelation'
 import { SearchView } from '../../models/SearchView'
+import { TermsAggregation } from '../../models/TermsAggregation'
+import { TotalRelation } from '../../models/TotalRelation'
+import { useLensStore } from '../../store'
+import { FacetFilterGroup } from '../FacetFilterGroup'
+import { Loading } from '../Loading'
 import { BigMessage } from '../ui/BigMessage'
+import { ScholarList } from './ScholarList'
+import { SelectView } from './SelectView'
 
 type ScholarResultsProps = {
   fetching: boolean

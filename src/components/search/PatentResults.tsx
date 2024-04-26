@@ -1,14 +1,14 @@
-import { FacetFilterGroup } from '../FacetFilterGroup'
-import { Loading } from '../Loading'
-import { SelectView } from './SelectView'
-import { PatentList } from './PatentList'
-import { TermsAggregation } from '../../models/TermsAggregation'
 import { PatentSearchResponse } from '../../models/PatentSearchResponse'
 import { PatentTermsAggregationKey } from '../../models/PatentTermsAggregationKey'
 import { PatentTermsAggregationLabels } from '../../models/PatentTermsAggregationLabels'
 import { SearchView } from '../../models/SearchView'
+import { TermsAggregation } from '../../models/TermsAggregation'
 import { useLensStore } from '../../store'
+import { FacetFilterGroup } from '../FacetFilterGroup'
+import { Loading } from '../Loading'
 import { BigMessage } from '../ui/BigMessage'
+import { PatentList } from './PatentList'
+import { SelectView } from './SelectView'
 
 type PatentResultsProps = {
   fetching: boolean

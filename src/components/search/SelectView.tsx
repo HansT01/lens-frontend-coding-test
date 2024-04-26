@@ -1,6 +1,6 @@
+import { useTranslation } from 'react-i18next'
 import { SearchView } from '../../models/SearchView'
 import { useLensStore } from '../../store'
-import { useTranslation } from 'react-i18next'
 
 function Tooltip(props: any) {
   return <>{props.children}</>

@@ -1,9 +1,9 @@
 import { Aggregation } from './Aggregation'
-import { Metadatum } from './Metadatum'
 import { JoinStats } from './JoinStats'
-import { TotalRelation } from './TotalRelation'
-import { ScholarTermsAggregationKey } from './ScholarTermsAggregationKey'
+import { Metadatum } from './Metadatum'
 import { ScholarHit } from './ScholarHit'
+import { ScholarTermsAggregationKey } from './ScholarTermsAggregationKey'
+import { TotalRelation } from './TotalRelation'
 
 export interface ScholarSearchResponse {
   queryId: string

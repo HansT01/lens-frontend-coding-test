@@ -1,5 +1,5 @@
-import { Jurisdiction } from './Jurisdiction'
 import { AppType } from './AppType'
+import { Jurisdiction } from './Jurisdiction'
 
 export interface Applicant {
   name: string

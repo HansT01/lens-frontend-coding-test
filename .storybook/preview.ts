@@ -1,7 +1,7 @@
-import '../src/globals.css'
 import type { Preview } from '@storybook/react'
-import {withThemeProvider} from '../src/decorators'
-import { initialize as initMsw, mswLoader } from 'msw-storybook-addon';
+import { initialize as initMsw, mswLoader } from 'msw-storybook-addon'
+import { withThemeProvider } from '../src/decorators'
+import '../src/globals.css'
 
 initMsw({
   serviceWorker: { url: '/apiMockServiceWorker.js' },

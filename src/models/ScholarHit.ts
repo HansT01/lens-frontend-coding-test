@@ -1,5 +1,5 @@
-import { HitSource } from './HitSource'
 import { Highlight } from './Highlight'
+import { HitSource } from './HitSource'
 
 export interface ScholarHit {
   highlight: Highlight

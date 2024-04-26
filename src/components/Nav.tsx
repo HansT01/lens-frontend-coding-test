@@ -1,6 +1,5 @@
-import { Link, useQueryParams } from 'raviger'
 import { useTheme } from '@/components/ThemeProvider'
-import { theme as colors } from '@/theme'
+import { Link, useQueryParams } from 'raviger'
 import { ModeToggle } from './DarkModeToggle'
 
 export function Nav() {

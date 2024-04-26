@@ -1,6 +1,6 @@
-import { Button } from './ui/Button'
-import { TermsAggregation } from '../models/TermsAggregation'
 import { useTranslation } from 'react-i18next'
+import { TermsAggregation } from '../models/TermsAggregation'
+import { Button } from './ui/Button'
 
 export interface FacetFilterGroupProps {
   aggregation: TermsAggregation

@@ -1,6 +1,6 @@
-import { SourceSource } from './SourceSource'
-import { IDS } from './IDS'
 import { Author } from './Author'
+import { IDS } from './IDS'
+import { SourceSource } from './SourceSource'
 
 export interface HitSource {
   record_lens_id: string

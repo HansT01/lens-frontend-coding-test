@@ -1,8 +1,6 @@
 import { Link } from 'raviger'
-import { ScholarPills } from '../ScholarPills'
-import { CheckCircle, Square } from 'lucide-react'
 import { ScholarSearchResponse } from '../../models/ScholarSearchResponse'
-import { ScholarHit } from '../../models/ScholarHit'
+import { ScholarPills } from '../ScholarPills'
 
 export function ScholarList({ response }: { response: ScholarSearchResponse }) {
   return (

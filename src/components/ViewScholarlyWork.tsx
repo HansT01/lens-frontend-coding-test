@@ -1,5 +1,5 @@
-import { ScholarPills } from './ScholarPills'
 import { ScholarHit } from '@/models/ScholarHit'
+import { ScholarPills } from './ScholarPills'
 
 export function ViewScholarlyWork({ hit }: { hit: ScholarHit }) {
   return (

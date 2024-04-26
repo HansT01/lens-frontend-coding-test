@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { FacetFilterGroupProps, FacetFilter } from './FacetFilter'
+import { FacetFilter, FacetFilterGroupProps } from './FacetFilter'
 
 export function FacetFilterGroup({ aggregation, label }: FacetFilterGroupProps) {
   const [show, setShow] = useState(true)

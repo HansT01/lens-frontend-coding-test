@@ -1,7 +1,7 @@
 import { ViewPatent as Component } from '@/components/ViewPatent'
-import { within } from '@storybook/test'
-import { Meta, StoryObj } from '@storybook/react'
 import { getDefaultTestParameters, getTestPatent } from '@/components/handlers'
+import { Meta, StoryObj } from '@storybook/react'
+import { within } from '@storybook/test'
 
 type Story = StoryObj<typeof Component>
 

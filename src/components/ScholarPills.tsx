@@ -1,7 +1,7 @@
 import { HitSource } from '@/models/HitSource'
-import { Pill } from './ui/Pill'
 import { scholarPillColors } from '@/theme'
 import { useTranslation } from 'react-i18next'
+import { Pill } from './ui/Pill'
 
 export function ScholarPills({ source }: { source: HitSource }) {
   const { t } = useTranslation()

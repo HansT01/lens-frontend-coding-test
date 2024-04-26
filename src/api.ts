@@ -1,10 +1,10 @@
+import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { patentSearchFields, scholarSearchFields } from './fields'
-import { defaultScholarAggs } from './scholarAggs'
-import { patentAggregations } from './patentAggregations'
-import { useQuery } from '@tanstack/react-query'
-import { ScholarSearchResponse } from './models/ScholarSearchResponse'
 import { PatentSearchResponse } from './models/PatentSearchResponse'
+import { ScholarSearchResponse } from './models/ScholarSearchResponse'
+import { patentAggregations } from './patentAggregations'
+import { defaultScholarAggs } from './scholarAggs'
 
 export const API_BASE: string = 'https://localhost:9443/lens'
 export const SEARCH_API_BASE: string = `${API_BASE}/api/search`

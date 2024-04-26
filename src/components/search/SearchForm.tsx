@@ -1,9 +1,9 @@
-import { useFormik } from 'formik'
-import { theme } from '../../theme'
-import { suggestions } from '../../suggestions'
-import { random } from 'lodash'
 import { Input } from '@/components/ui/Input'
 import { useLensStore } from '@/store'
+import { useFormik } from 'formik'
+import { random } from 'lodash'
+import { suggestions } from '../../suggestions'
+import { theme } from '../../theme'
 
 interface SearchFormProps {
   q: string

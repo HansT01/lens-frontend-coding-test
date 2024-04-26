@@ -1,7 +1,7 @@
+import { legalStatusColourScale, metaNoticeColourScale } from '@/theme'
 import colors from 'tailwindcss/colors'
 import { PatentDocument } from '../models/PatentDocument'
 import { Pill } from './ui/Pill'
-import { legalStatusColourScale, metaNoticeColourScale } from '@/theme'
 
 export function PatentPills({ doc }: { doc: PatentDocument }) {
   const { patent_status: legalStatus } = doc.legal_status

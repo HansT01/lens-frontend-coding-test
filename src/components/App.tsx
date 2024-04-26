@@ -1,8 +1,8 @@
-import '../globals.css'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { Search } from './search/Search'
+import '../globals.css'
 import { Nav } from './Nav'
+import { Search } from './search/Search'
 
 const defaultQueryClient = () =>
   new QueryClient({

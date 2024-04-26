@@ -1,14 +1,14 @@
 import { HttpHandler, HttpResponse, http } from 'msw'
 
-import SCHOLAR_RESPONSE from '@/fixtures/articles.json'
-import PATENTS_RESPONSE from '@/fixtures/patents.json'
-import PATENT_FACETS from '@/fixtures/patent-facets.json'
-import SCHOLAR_FACETS from '@/fixtures/scholar-facets.json'
 import { API_BASE, SearchType } from '@/api'
-import { PatentTermsAggregationKey } from '@/models/PatentTermsAggregationKey'
-import { ScholarTermsAggregationKey } from '@/models/ScholarTermsAggregationKey'
+import SCHOLAR_RESPONSE from '@/fixtures/articles.json'
+import PATENT_FACETS from '@/fixtures/patent-facets.json'
+import PATENTS_RESPONSE from '@/fixtures/patents.json'
+import SCHOLAR_FACETS from '@/fixtures/scholar-facets.json'
 import { PatentHit } from '@/models/PatentHit'
+import { PatentTermsAggregationKey } from '@/models/PatentTermsAggregationKey'
 import { ScholarHit } from '@/models/ScholarHit'
+import { ScholarTermsAggregationKey } from '@/models/ScholarTermsAggregationKey'
 
 const mergeResponses = (a: any, b: any) => ({
   ...a,

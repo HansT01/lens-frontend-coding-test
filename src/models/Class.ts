@@ -1,8 +1,8 @@
-import { Jurisdiction } from './Jurisdiction'
-import { ClassValue } from './ClassValue'
-import { SymbolPosition } from './SymbolPosition'
-import { ClassStatus } from './ClassStatus'
 import { ClassDataSource } from './ClassDataSource'
+import { ClassStatus } from './ClassStatus'
+import { ClassValue } from './ClassValue'
+import { Jurisdiction } from './Jurisdiction'
+import { SymbolPosition } from './SymbolPosition'
 
 export interface Class {
   symbol: string
