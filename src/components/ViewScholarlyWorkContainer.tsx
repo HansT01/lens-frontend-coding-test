@@ -12,5 +12,3 @@ export function ViewScholarlyWorkContainer() {
   if (!hit) return <div>Scholar Work Not Found</div>
   return <ViewScholarlyWork hit={hit} />
 }
-
-

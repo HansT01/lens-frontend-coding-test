@@ -1,6 +1,6 @@
 import { App as Component } from '@/components/App'
-import { Meta, StoryObj } from '@storybook/react'
 import { getDefaultTestParameters } from '@/components/handlers'
+import { Meta, StoryObj } from '@storybook/react'
 import { expect, userEvent, within } from '@storybook/test'
 
 type Story = StoryObj<typeof Component>

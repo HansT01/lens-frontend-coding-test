@@ -1,10 +1,4 @@
-import { useQueryParams } from 'raviger'
-import { PatentResults } from './PatentResults'
-import { ScholarResults } from './ScholarResults'
 import { SearchType, usePatents, useScholar } from '@/api'
-import { SearchForm } from './SearchForm'
-import { useLensStore } from '../../store'
-import { SearchTab } from './SearchTab'
 import {
   BreadcrumbItem,
   BreadcrumbLink,
@@ -12,15 +6,31 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator
 } from '@/components/ui/Breadcrumb'
+import { useQueryParams } from 'raviger'
+import { useLensStore } from '../../store'
+import { PatentResults } from './PatentResults'
+import { ScholarResults } from './ScholarResults'
+import { SearchForm } from './SearchForm'
+import { SearchTab } from './SearchTab'
 
 export function Search() {
   const [{ q = '' }, setQuery] = useQueryParams()
   const { searchType, showSearchResults } = useLensStore()
 
-  const { data: patentResponse, error: patentsError, isFetching: patentsFetching, isLoading: patentsLoading } = usePatents({ q }, showSearchResults)
+  const {
+    data: patentResponse,
+    error: patentsError,
+    isFetching: patentsFetching,
+    isLoading: patentsLoading
+  } = usePatents({ q }, showSearchResults)
+  console.log(patentResponse)
 
-  const { data: scholarResponse, error: scholarError, isFetching: scholarFetching, isLoading: scholarLoading } = useScholar({ q }, showSearchResults)
-
+  const {
+    data: scholarResponse,
+    error: scholarError,
+    isFetching: scholarFetching,
+    isLoading: scholarLoading
+  } = useScholar({ q }, showSearchResults)
 
   if (patentsError || scholarError) console.log({ patentsError, scholarError })
 

@@ -50,11 +50,7 @@ export function ScholarResults({ fetching, response, loading }: ScholarResultsPr
             </h4>
             <SelectView />
           </div>
-          {response && (
-            <div>
-              {view === SearchView.List && <ScholarList response={response} />}
-            </div>
-          )}
+          {response && <div>{view === SearchView.List && <ScholarList response={response} />}</div>}
         </div>
       </div>
     </>

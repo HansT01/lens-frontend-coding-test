@@ -14,5 +14,3 @@ export function ViewPatentContainer() {
   if (!patent) return <ErrorPage />
   return <ViewPatent patent={patent} />
 }
-
-

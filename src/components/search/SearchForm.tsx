@@ -11,7 +11,7 @@ interface SearchFormProps {
 }
 
 export function SearchForm({ q, setQuery }: SearchFormProps) {
-  const {setShowSearchResults} = useLensStore()
+  const { setShowSearchResults } = useLensStore()
   const formik = useFormik({
     initialValues: {
       q
@@ -31,7 +31,7 @@ export function SearchForm({ q, setQuery }: SearchFormProps) {
           defaultValue={formik.values.q || ''}
           className="p-2 border border-grey-2 w-full"
           placeholder="Search patents and scholarship"
-          style={{textAlign: 'right'}}
+          style={{ textAlign: 'right' }}
         />
         <a
           className="hidden p-2 cursor-pointer text-sm text-blue-400 opacity-0 hover:opacity-100"

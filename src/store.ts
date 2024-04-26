@@ -20,6 +20,4 @@ const store: StateCreator<LensState> = (set) => ({
   setShowSearchResults: (show: boolean) => set((_state) => ({ showSearchResults: show }))
 })
 
-export const useLensStore = create<LensState>()(
-  store
-)
+export const useLensStore = create<LensState>()(store)
