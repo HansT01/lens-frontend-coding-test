@@ -75,11 +75,11 @@ function PatentBody({ hit }: { hit: PatentHit }) {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
-        <h5 className="font-semibold">Abstract:</h5>
+        <h5 className="font-semibold">Abstract</h5>
         <div className="text-sm">{hit.document.abstract.en.map((en) => en.text)}</div>
       </div>
       <div className="flex flex-col gap-2">
-        <h5 className="font-semibold">Claims:</h5>
+        <h5 className="font-semibold">Claims</h5>
         {hit.document.claim.en !== undefined ? (
           <>
             <div>
@@ -106,7 +106,7 @@ function PatentBody({ hit }: { hit: PatentHit }) {
       </div>
       {hit.document.owner.length > 0 && (
         <div className="flex flex-col">
-          <h5 className="font-semibold">Owners:</h5>
+          <h5 className="font-semibold">Owners</h5>
           <ul className="list-disc pl-6">
             {hit.document.owner.map((owner) => (
               <li key={owner.name} className="text-sm">
@@ -117,7 +117,7 @@ function PatentBody({ hit }: { hit: PatentHit }) {
         </div>
       )}
       <div className="flex flex-col">
-        <h5 className="font-semibold">Applicants:</h5>
+        <h5 className="font-semibold">Applicants</h5>
         <ul className="list-disc pl-6">
           {hit.document.applicant.map((applicant) => (
             <li key={applicant.name} className="text-sm">
@@ -127,7 +127,7 @@ function PatentBody({ hit }: { hit: PatentHit }) {
         </ul>
       </div>
       <div className="flex flex-col">
-        <h5 className="font-semibold">Inventors:</h5>
+        <h5 className="font-semibold">Inventors</h5>
         <ul className="list-disc pl-6">
           {hit.document.inventor.map((inventor) => (
             <li key={inventor.name} className="text-sm">
@@ -138,7 +138,7 @@ function PatentBody({ hit }: { hit: PatentHit }) {
       </div>
       {hit.document['class_cpc.inv_symbol'].length > 0 && (
         <div className="flex flex-col gap-2">
-          <h5 className="font-semibold">CPC Classifications:</h5>
+          <h5 className="font-semibold">CPC Classifications</h5>
           <ul className="flex flex-wrap gap-2">
             {hit.document.class_cpc.map((cpc) => (
               <li
@@ -153,7 +153,7 @@ function PatentBody({ hit }: { hit: PatentHit }) {
       )}
       {hit.document['class_ipcr.inv_symbol'].length > 0 && (
         <div className="flex flex-col gap-2">
-          <h5 className="font-semibold">IPC Classifications:</h5>
+          <h5 className="font-semibold">IPC Classifications</h5>
           <ul className="flex flex-wrap gap-2">
             {hit.document.class_ipcr.map((ipcr) => (
               <li

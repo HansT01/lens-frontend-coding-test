@@ -44,7 +44,7 @@ export const PatentListItem: Story = {
     })
 
     await step('Check abstract and claims not visible', async () => {
-      expect(canvas.queryByText('Abstract:')).not.toBeVisible()
+      expect(canvas.queryByText('Abstract')).not.toBeVisible()
       expect(canvas.queryByText('Document Preview')).not.toBeVisible()
       expect(canvas.queryByText('History')).not.toBeVisible()
     })
@@ -52,7 +52,7 @@ export const PatentListItem: Story = {
       await userEvent.click(canvas.getByRole('button'))
     })
     await step('Check abstract and claims are visible', async () => {
-      expect(canvas.queryByText('Abstract:')).toBeVisible()
+      expect(canvas.queryByText('Abstract')).toBeVisible()
       expect(canvas.queryByText('Document Preview')).toBeVisible()
       expect(canvas.queryByText('History')).toBeVisible()
     })
