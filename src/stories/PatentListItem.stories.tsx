@@ -38,12 +38,12 @@ export const PatentListItem: Story = {
     await step('Check for correct display key', async () => {
       await canvas.findAllByText(patentDisplayKey)
     })
-    await step('Check all applicants and inventors are visible', async () => {
+    await step('Check for all applicants and inventors', async () => {
       applicants.forEach((applicant) => canvas.findAllByText(applicant))
       inventors.forEach((inventor) => canvas.findAllByText(inventor))
     })
 
-    await step('Check abstract and claims not visible', async () => {
+    await step('Check abstract and claims are not visible', async () => {
       expect(canvas.queryByText('Abstract')).not.toBeVisible()
       expect(canvas.queryByText('Document Preview')).not.toBeVisible()
       expect(canvas.queryByText('History')).not.toBeVisible()
@@ -57,13 +57,13 @@ export const PatentListItem: Story = {
       expect(canvas.queryByText('History')).toBeVisible()
     })
 
-    await step('Check claims not visible', async () => {
+    await step('Check claims are not visible', async () => {
       expect(canvas.queryByText(claim)).not.toBeVisible()
     })
     await step('Expand patent preview', async () => {
       await userEvent.click(canvas.getByText('Show Claims'))
     })
-    await step('Check claims not visible', async () => {
+    await step('Check claims are visible', async () => {
       expect(canvas.queryByText(claim)).toBeVisible()
     })
   }
