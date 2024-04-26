@@ -207,7 +207,6 @@ function ArticleSection({ hit }: { hit: PatentHit }) {
 
 export function PatentListItem({ hit, zebra }: { hit: PatentHit; zebra?: boolean }) {
   const [isExpanded, setIsExpanded] = useState(false)
-  console.log(JSON.stringify(hit, null, 2))
   return (
     <div
       key={hit.document.record_lens_id}
