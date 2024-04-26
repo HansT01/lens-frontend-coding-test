@@ -27,14 +27,14 @@ export function PatentListItem({ hit, zebra }: { hit: PatentHit; zebra?: boolean
   console.log(hit)
   const className = zebra ? '' : 'bg-slate-100 dark:bg-[#26323b]'
   return (
-    <div key={hit.document.record_lens_id} className={cn('p-3 flex flex-col gap-2', className)}>
+    <div key={hit.document.record_lens_id} className={cn('p-4 flex flex-col gap-2', className)}>
       <Link href={`/patent/${hit.document.record_lens_id}`}>
         <h4 className="text-lg">{getTitle(hit)}</h4>
       </Link>
       <div className="flex flex-wrap">
         <PatentPills doc={hit.document} />
       </div>
-      <div className="flex flex-col">
+      <div className="flex flex-col py-4">
         <div className="text-sm">{hit.document.publication_type}</div>
         <div className="text-sm">
           Published: {hit.document.date_published || hit.document.year_published || 'unknown'}
@@ -44,7 +44,7 @@ export function PatentListItem({ hit, zebra }: { hit: PatentHit; zebra?: boolean
           Applicants: {hit.document.applicant?.map((applicant) => applicant.name).join(', ')}
         </div>
       </div>
-      <div className={cn('flex overflow-hidden items-stretch gap-6', { hidden: !isOpenPreview })}>
+      <div className={cn('flex overflow-hidden items-stretch gap-6 border-t py-4', { hidden: !isOpenPreview })}>
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <h5 className="font-semibold">Abstract:</h5>
