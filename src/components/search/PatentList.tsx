@@ -77,6 +77,20 @@ export function PatentListItem({ hit, zebra }: { hit: PatentHit; zebra?: boolean
             <div className="text-sm">Information currently unavailable.</div>
           )}
         </div>
+        {hit.document.owner.length > 0 && (
+          <div className="flex flex-col">
+            <h5 className="font-semibold">Owners:</h5>
+            <ul className="list-disc pl-6">
+              {hit.document.owner.map((owner) => {
+                return (
+                  <li key={owner.name} className="text-sm">
+                    {owner.name}
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        )}
         <div className="flex flex-col">
           <h5 className="font-semibold">Applicants:</h5>
           <ul className="list-disc pl-6">
