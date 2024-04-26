@@ -56,9 +56,9 @@ export function PatentListItem({ hit, zebra }: { hit: PatentHit; zebra?: boolean
               <div>
                 <button
                   onClick={() => setIsShowingClaims(!isShowingClaims)}
-                  className="bg-primary text-primary-foreground text-sm rounded px-2 py-1"
+                  className="bg-primary text-primary-foreground text-sm rounded py-1 px-2 w-[93px]"
                 >
-                  Show Claims
+                  {isShowingClaims ? 'Hide' : 'Show'} Claims
                 </button>
               </div>
               <div className={cn('line-clamp-6 flex flex-col', { hidden: !isShowingClaims })}>
