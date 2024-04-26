@@ -195,7 +195,7 @@ function ArticleSection({ hit }: { hit: PatentHit }) {
     <div className="shrink-0 w-[250px] flex flex-col gap-4">
       <div className="flex flex-col gap-2">
         <h5 className="font-semibold">Document Preview</h5>
-        <div className="aspect-[1/1.414] border-border border bg-white text-black w-full rounded flex items-start justify-center p-3 text-sm">
+        <div className="aspect-sqrt-2 border-border border bg-white text-black w-full rounded flex items-start justify-center p-3 text-sm">
           Preview unavailable
         </div>
       </div>

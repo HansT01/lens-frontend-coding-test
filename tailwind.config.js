@@ -13,6 +13,9 @@ module.exports = {
       }
     },
     extend: {
+      aspectRatio: {
+        'sqrt-2': '1 / 1.41421'
+      },
       colors: {
         openAccess: 'rgb(120, 189, 76)',
         border: 'hsl(var(--border))',
