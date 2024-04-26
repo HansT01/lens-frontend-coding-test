@@ -19,6 +19,7 @@ const removeNumberedListPrefix = (str: string) => {
 }
 
 function MetaInfo({ hit }: { hit: PatentHit }) {
+  // TODO: Fix citations
   return (
     <div className="flex flex-col gap-4">
       <Link href={`/patent/${hit.document.record_lens_id}`}>
@@ -28,7 +29,7 @@ function MetaInfo({ hit }: { hit: PatentHit }) {
         <PatentPills doc={hit.document} />
       </div>
       <div className="flex flex-col gap-1">
-        <div className="flex flex-wrap gap-x-4 gap-y-1">
+        <div className="flex flex-wrap gap-x-3 gap-y-1">
           <div className="text-sm">{getDocumentDisplayKey(hit.document)}</div>
           <div className="text-sm">{hit.document.publication_type}</div>
           <div className="text-sm">
@@ -46,6 +47,14 @@ function MetaInfo({ hit }: { hit: PatentHit }) {
           Applicants: {hit.document.applicant?.map((applicant) => applicant.name).join(', ')}
         </div>
         <div className="text-sm">Inventors: {hit.document.inventor?.map((inventor) => inventor.name).join(', ')}</div>
+        <div className="flex flex-wrap gap-x-3 gap-y-1">
+          <div className="text-sm">Cited works: {hit.document['reference_cited.patent_count']}</div>
+          <div className="text-sm">Cited by: {hit.document.cited_by.patent_count}</div>
+          <div className="text-sm">Cites: {hit.document['reference_cited.patent_count']}</div>
+          <Link href={`/patent/${hit.document.record_lens_id}`}>
+            <div className="text-sm underline">{hit.document.lens_id}</div>
+          </Link>
+        </div>
       </div>
     </div>
   )
