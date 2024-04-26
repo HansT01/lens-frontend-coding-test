@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils'
+import { legalStatusColourScale } from '@/theme'
 import getUnicodeFlagIcon from 'country-flag-icons/unicode'
 import dayjs from 'dayjs'
 import { ChevronDown } from 'lucide-react'
@@ -26,6 +27,7 @@ const removeNumberedListPrefix = (str: string) => {
 }
 
 function MetaInfo({ hit }: { hit: PatentHit }) {
+  const legalStatusColor = legalStatusColourScale[hit.document.legal_status.patent_status]
   // TODO: Fix citations
   return (
     <div className="flex flex-col gap-4">
@@ -43,7 +45,11 @@ function MetaInfo({ hit }: { hit: PatentHit }) {
             Family: {hit.document.family.simple.size}s / {hit.document.family.extended.size}ex
           </div>
           <div className="text-sm">Family Jurisdictions: {getFamilyJurisdiction(hit).join(', ')}</div>
-          <div className="text-sm">Legal Status: {hit.document.legal_status.patent_status}</div>
+          <div className="text-sm flex items-center gap-1">
+            Legal Status:
+            <div className="h-4 aspect-square rounded-full" style={{ backgroundColor: legalStatusColor }} />
+            {hit.document.legal_status.patent_status}
+          </div>
         </div>
         <div className="flex flex-wrap gap-x-3 gap-y-1">
           <div className="text-sm">Application Number: {hit.document.application_reference.doc_number}</div>
