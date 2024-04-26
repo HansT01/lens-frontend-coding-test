@@ -21,7 +21,7 @@ export function PatentList({ response }: { response: PatentSearchResponse }) {
 }
 
 export function PatentListItem({ hit, zebra }: { hit: PatentHit; zebra?: boolean }) {
-  const [isOpenPreview, setIsOpenPreview] = useState(false)
+  const [isExpanded, setIsExpanded] = useState(false)
   const [isShowingClaims, setIsShowingClaims] = useState(false)
 
   console.log(hit)
@@ -44,7 +44,7 @@ export function PatentListItem({ hit, zebra }: { hit: PatentHit; zebra?: boolean
           Applicants: {hit.document.applicant?.map((applicant) => applicant.name).join(', ')}
         </div>
       </div>
-      <div className={cn('flex overflow-hidden items-stretch gap-6 border-t py-4', { hidden: !isOpenPreview })}>
+      <div className={cn('flex overflow-hidden items-stretch gap-6 border-t py-4', { hidden: !isExpanded })}>
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <h5 className="font-semibold">Abstract:</h5>
@@ -181,8 +181,8 @@ export function PatentListItem({ hit, zebra }: { hit: PatentHit; zebra?: boolean
           </div>
         </div>
       </div>
-      <button onClick={() => setIsOpenPreview(!isOpenPreview)} className="w-full p-2 flex justify-center items-center">
-        <ChevronDown className={cn('transition-transform', { 'rotate-180': isOpenPreview })} />
+      <button onClick={() => setIsExpanded(!isExpanded)} className="w-full p-2 flex justify-center items-center">
+        <ChevronDown className={cn('transition-transform', { 'rotate-180': isExpanded })} />
       </button>
     </div>
   )
