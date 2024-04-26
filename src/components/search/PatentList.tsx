@@ -104,31 +104,31 @@ export function PatentListItem({ hit, zebra }: { hit: PatentHit; zebra?: boolean
         {hit.document['class_cpc.inv_symbol'].length > 0 && (
           <div className="flex flex-col gap-1">
             <h5 className="font-semibold">CPC Classifications:</h5>
-            <div className="flex flex-wrap gap-1">
-              {hit.document['class_cpc.inv_symbol'].map((symbol, i) => (
-                <div
-                  key={i}
+            <ul className="flex flex-wrap gap-1">
+              {hit.document.class_cpc.map((cpc) => (
+                <li
+                  key={cpc.symbol + cpc.action_date}
                   className="text-sm bg-accent text-accent-foreground border-accent-foreground border px-2 py-0.5 rounded-md"
                 >
-                  {symbol}
-                </div>
+                  {cpc.symbol}
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         )}
         {hit.document['class_ipcr.inv_symbol'].length > 0 && (
           <div className="flex flex-col gap-1">
             <h5 className="font-semibold">IPC Classifications:</h5>
-            <div className="flex flex-wrap gap-1">
-              {hit.document['class_ipcr.inv_symbol'].map((symbol, i) => (
-                <div
-                  key={i}
+            <ul className="flex flex-wrap gap-1">
+              {hit.document.class_ipcr.map((ipcr) => (
+                <li
+                  key={ipcr.symbol + ipcr.action_date}
                   className="text-sm bg-accent text-accent-foreground border-accent-foreground border px-2 py-0.5 rounded-md"
                 >
-                  {symbol}
-                </div>
+                  {ipcr.symbol}
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         )}
       </div>
