@@ -68,7 +68,7 @@ export function FacetFilter({ aggregationKey, aggregation }: FacetFilterProps) {
       keys: ['key'],
       getFn: (bucket, path) => jurisdictionName[bucket[path as string]],
       findAllMatches: true,
-      threshold: 2
+      threshold: 1.0
     })
     const searchResults = fuse.search(fuzzySearch)
     sortedBuckets = searchResults.map((result) => result.item)
