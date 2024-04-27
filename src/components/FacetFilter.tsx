@@ -1,10 +1,12 @@
 import { jurisdictionName } from '@/jurisdictions'
 import { Bucket } from '@/models/Bucket'
 import { PatentTermsAggregationKey } from '@/models/PatentTermsAggregationKey'
+import Fuse from 'fuse.js'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { TermsAggregation } from '../models/TermsAggregation'
 import { Button } from './ui/Button'
+import { Input } from './ui/Input'
 
 function JursidictionLabel({ jurisdiction }: { jurisdiction: string }) {
   const flagUrl = `https://static.lens.org/lens/9.1.3/img/flags/${jurisdiction}.png`
@@ -32,7 +34,7 @@ function FacetFilterItem({ aggregationKey, bucket, isChecked, onChange }: FacetF
       key={bucket.key}
     >
       <span className="mr-2">
-        <input type="checkbox" checked={isChecked} onChange={onChange} />
+        <Input type="checkbox" checked={isChecked} onChange={onChange} className="h-4" />
       </span>
       <span className="flex-1">
         {aggregationKey === PatentTermsAggregationKey.Jurisdiction ? (
@@ -58,6 +60,19 @@ export function FacetFilter({ aggregationKey, aggregation }: FacetFilterProps) {
       return { ...bucket, checked: false }
     })
   )
+  const [fuzzySearch, setFuzzySearch] = useState('')
+
+  let sortedBuckets = buckets
+  if (aggregationKey === PatentTermsAggregationKey.Jurisdiction && fuzzySearch !== '') {
+    const fuse = new Fuse(buckets, {
+      keys: ['key'],
+      getFn: (bucket, path) => jurisdictionName[bucket[path as string]],
+      findAllMatches: true,
+      threshold: 2
+    })
+    const searchResults = fuse.search(fuzzySearch)
+    sortedBuckets = searchResults.map((result) => result.item)
+  }
 
   const handleCheck = (bucketKey: string) => {
     setBuckets(
@@ -82,14 +97,17 @@ export function FacetFilter({ aggregationKey, aggregation }: FacetFilterProps) {
   return (
     <div className="p-2 flex flex-col gap-1">
       {aggregationKey === PatentTermsAggregationKey.Jurisdiction && (
-        <div>
-          <Button onClick={handleCheckAll} size="sm">
-            Check All
-          </Button>
+        <div className="flex flex-col gap-2">
+          <Input type="text" className="w-full" value={fuzzySearch} onChange={(e) => setFuzzySearch(e.target.value)} />
+          <div>
+            <Button onClick={handleCheckAll} size="sm">
+              Check All
+            </Button>
+          </div>
         </div>
       )}
       <div>
-        {buckets.map((bucket) => {
+        {sortedBuckets.map((bucket) => {
           return (
             <FacetFilterItem
               key={bucket.key}
