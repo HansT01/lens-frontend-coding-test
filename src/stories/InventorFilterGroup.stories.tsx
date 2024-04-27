@@ -1,15 +1,17 @@
 import { FacetFilterGroup as Component } from '@/components/FacetFilterGroup'
 import { Meta, StoryObj } from '@storybook/react'
 
+import { ScholarTermsAggregationKey } from '@/models/ScholarTermsAggregationKey'
 import AGGREGATIONS from '../fixtures/patent-facets.json'
 
 type Story = StoryObj<typeof Component>
 
 const meta: Meta<typeof Component> = {
-  title: 'Components/FacetFilterGroup',
+  title: 'Components/InventorFilterGroup',
   component: Component,
   decorators: [],
   args: {
+    aggregationKey: ScholarTermsAggregationKey.Inventor,
     aggregation: AGGREGATIONS.aggregations['inventor.name.exact'],
     label: 'Inventor'
   }
@@ -17,4 +19,4 @@ const meta: Meta<typeof Component> = {
 
 export default meta
 
-export const FacetFilterGroup: Story = {}
+export const InventorFilterGroup: Story = {}
