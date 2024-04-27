@@ -46,9 +46,9 @@ export function FacetFilterItem({
         <input type="checkbox" />
       </span>
       <span className="flex-1 text-ellipsis line-clamp-1">
-        {aggregationKey === PatentTermsAggregationKey.Jurisdiction
+        {(aggregationKey === PatentTermsAggregationKey.Jurisdiction
           ? jurisdictionName[bucket.key]
-          : bucket.key.replaceAll('_', ' ')}
+          : bucket.key.replaceAll('_', ' ')) ?? bucket.key}
       </span>
       <span className="justify-self-end">({bucket.doc_count.toLocaleString()})</span>
     </label>
