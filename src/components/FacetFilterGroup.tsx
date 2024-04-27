@@ -1,5 +1,13 @@
+import { PatentTermsAggregationKey } from '@/models/PatentTermsAggregationKey'
+import { TermsAggregation } from '@/models/TermsAggregation'
 import { useState } from 'react'
-import { FacetFilter, FacetFilterGroupProps } from './FacetFilter'
+import { FacetFilter } from './FacetFilter'
+
+export interface FacetFilterGroupProps {
+  aggregationKey: PatentTermsAggregationKey
+  aggregation: TermsAggregation
+  label: string
+}
 
 export function FacetFilterGroup({ aggregationKey, aggregation, label }: FacetFilterGroupProps) {
   const [show, setShow] = useState(true)
