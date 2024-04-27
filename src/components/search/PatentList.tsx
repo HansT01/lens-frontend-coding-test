@@ -25,7 +25,7 @@ function DocumentDisplayKey({ doc }: { doc: { jurisdiction: string; doc_number: 
   const flagUrl = `https://static.lens.org/lens/9.1.3/img/flags/${doc.jurisdiction}.png`
   return (
     <div className="flex gap-1 items-center">
-      <span className="h-[13px]">
+      <span className="h-[13px] shrink-0">
         <img className="max-h-full" src={flagUrl} alt={doc.jurisdiction} />
       </span>
       <div className="">
