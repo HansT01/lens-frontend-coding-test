@@ -45,7 +45,7 @@ export function FacetFilterItem({
       <span className="mr-1">
         <input type="checkbox" />
       </span>
-      <span className="flex-1">
+      <span className="flex-1 text-ellipsis line-clamp-1">
         {aggregationKey === PatentTermsAggregationKey.Jurisdiction
           ? jurisdictionName[bucket.key]
           : bucket.key.replaceAll('_', ' ')}
