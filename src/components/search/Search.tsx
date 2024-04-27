@@ -23,7 +23,6 @@ export function Search() {
     isFetching: patentsFetching,
     isLoading: patentsLoading
   } = usePatents({ q }, showSearchResults)
-  console.log(patentResponse)
 
   const {
     data: scholarResponse,
