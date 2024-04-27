@@ -46,13 +46,12 @@ function FacetFilterItem({ aggregationKey, bucket, isChecked, onChange }: FacetF
   )
 }
 
-export function FacetFilter({
-  aggregationKey,
-  aggregation
-}: {
+interface FacetFilterProps {
   aggregationKey: PatentTermsAggregationKey
   aggregation: TermsAggregation
-}) {
+}
+
+export function FacetFilter({ aggregationKey, aggregation }: FacetFilterProps) {
   const { t } = useTranslation()
   const [buckets, setBuckets] = useState(
     aggregation.buckets.map((bucket) => {
