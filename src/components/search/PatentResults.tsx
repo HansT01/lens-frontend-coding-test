@@ -31,11 +31,11 @@ export function PatentResults({ response, loading }: PatentResultsProps) {
     <div className="md:grid grid-cols-12 grid-flow-row gap-2">
       <aside className="md:col-span-3 xl:col-span-2">
         {response?.aggregations &&
-          facetKeys.map((k) => (
+          facetKeys.map((key) => (
             <FacetFilterGroup
-              key={k}
-              aggregation={response.aggregations[k] as TermsAggregation}
-              label={PatentTermsAggregationLabels[k]}
+              aggregationKey={key}
+              aggregation={response.aggregations[key] as TermsAggregation}
+              label={PatentTermsAggregationLabels[key]}
             />
           ))}
       </aside>

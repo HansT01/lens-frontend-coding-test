@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { FacetFilter, FacetFilterGroupProps } from './FacetFilter'
 
-export function FacetFilterGroup({ aggregation, label }: FacetFilterGroupProps) {
+export function FacetFilterGroup({ aggregationKey, aggregation, label }: FacetFilterGroupProps) {
   const [show, setShow] = useState(true)
   // TODO: useScholar with aggregation enabled:show
   return (
@@ -9,7 +9,7 @@ export function FacetFilterGroup({ aggregation, label }: FacetFilterGroupProps) 
       <div className={'font-bold p-2 cursor-pointer'} onClick={() => setShow(!show)}>
         {label}
       </div>
-      {show && <FacetFilter aggregation={aggregation} />}
+      {show && <FacetFilter aggregationKey={aggregationKey} aggregation={aggregation} />}
     </div>
   )
 }
