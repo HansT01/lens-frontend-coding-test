@@ -37,9 +37,6 @@ export function FacetFilterItem({
   aggregationKey: PatentTermsAggregationKey
   bucket: any
 }) {
-  if (aggregationKey === PatentTermsAggregationKey.Jurisdiction) {
-    console.log(bucket.key, jurisdictionName[bucket.key])
-  }
   return (
     <label
       className="flex text-sm small cursor-pointer py-1 hover:bg-slate-100 dark:hover:bg-slate-900"
