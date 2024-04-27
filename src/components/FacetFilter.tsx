@@ -1,6 +1,7 @@
 import { jurisdictionName } from '@/jurisdictions'
 import { Bucket } from '@/models/Bucket'
 import { PatentTermsAggregationKey } from '@/models/PatentTermsAggregationKey'
+import { PatentTermsAggregationLabels } from '@/models/PatentTermsAggregationLabels'
 import Fuse from 'fuse.js'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -99,7 +100,13 @@ export function FacetFilter({ aggregationKey, aggregation }: FacetFilterProps) {
     <div className="p-2 flex flex-col gap-1">
       {aggregationKey === PatentTermsAggregationKey.Jurisdiction && (
         <div className="flex flex-col gap-2">
-          <Input type="text" className="w-full" value={fuzzySearch} onChange={(e) => setFuzzySearch(e.target.value)} />
+          <Input
+            type="text"
+            placeholder={`Search ${PatentTermsAggregationLabels[PatentTermsAggregationKey.Jurisdiction].toLowerCase()}`}
+            value={fuzzySearch}
+            onInput={(e) => setFuzzySearch(e.currentTarget.value)}
+            className="w-full placeholder:text-left"
+          />
           <div>
             <Button onClick={handleCheckAll} size="sm">
               Check All
