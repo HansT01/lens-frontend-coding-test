@@ -11,7 +11,7 @@ export interface FacetFilterGroupProps {
   label: string
 }
 
-function JurisdictionFilterItem({ jurisdiction }: { jurisdiction: string }) {
+function JursidictionLabel({ jurisdiction }: { jurisdiction: string }) {
   const flagUrl = `https://static.lens.org/lens/9.1.3/img/flags/${jurisdiction}.png`
   return (
     <div className="flex gap-1 items-center">
@@ -34,7 +34,7 @@ function FacetFilterItem({ aggregationKey, bucket }: { aggregationKey: PatentTer
       </span>
       <span className="flex-1">
         {aggregationKey === PatentTermsAggregationKey.Jurisdiction ? (
-          <JurisdictionFilterItem jurisdiction={bucket.key} />
+          <JursidictionLabel jurisdiction={bucket.key} />
         ) : (
           bucket.key.replace('_', ' ')
         )}
