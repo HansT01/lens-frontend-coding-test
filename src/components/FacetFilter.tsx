@@ -5,6 +5,7 @@ import Fuse from 'fuse.js'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { TermsAggregation } from '../models/TermsAggregation'
+import { AggregationKey } from './FacetFilterGroup'
 import { Button } from './ui/Button'
 import { Input } from './ui/Input'
 
@@ -21,7 +22,7 @@ function JursidictionLabel({ jurisdiction }: { jurisdiction: string }) {
 }
 
 interface FacetFilterItemProps {
-  aggregationKey: PatentTermsAggregationKey
+  aggregationKey: AggregationKey
   bucket: Bucket
   isChecked: boolean
   onChange: () => void
@@ -49,7 +50,7 @@ function FacetFilterItem({ aggregationKey, bucket, isChecked, onChange }: FacetF
 }
 
 interface FacetFilterProps {
-  aggregationKey: PatentTermsAggregationKey
+  aggregationKey: AggregationKey
   aggregation: TermsAggregation
 }
 

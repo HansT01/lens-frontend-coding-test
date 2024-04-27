@@ -1,10 +1,13 @@
 import { PatentTermsAggregationKey } from '@/models/PatentTermsAggregationKey'
+import { ScholarTermsAggregationKey } from '@/models/ScholarTermsAggregationKey'
 import { TermsAggregation } from '@/models/TermsAggregation'
 import { useState } from 'react'
 import { FacetFilter } from './FacetFilter'
 
+export type AggregationKey = PatentTermsAggregationKey | ScholarTermsAggregationKey
+
 export interface FacetFilterGroupProps {
-  aggregationKey: PatentTermsAggregationKey
+  aggregationKey: AggregationKey
   aggregation: TermsAggregation
   label: string
 }
