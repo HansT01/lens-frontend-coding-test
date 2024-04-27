@@ -17,7 +17,11 @@ const getFamilyJurisdiction = (hit: PatentHit) => {
   return [...jurisdictions]
 }
 
-const DocumentDisplayKey = ({ doc }: { doc: { jurisdiction: string; doc_number: string; kind: string } }) => {
+const removeNumberedListPrefix = (str: string) => {
+  return str.replace(/^\d+\s*\.\s*/, '')
+}
+
+function DocumentDisplayKey({ doc }: { doc: { jurisdiction: string; doc_number: string; kind: string } }) {
   const flagUrl = `https://static.lens.org/lens/9.1.3/img/flags/${doc.jurisdiction}.png`
   return (
     <div className="flex gap-1 items-center">
@@ -29,10 +33,6 @@ const DocumentDisplayKey = ({ doc }: { doc: { jurisdiction: string; doc_number: 
       </div>
     </div>
   )
-}
-
-const removeNumberedListPrefix = (str: string) => {
-  return str.replace(/^\d+\s*\.\s*/, '')
 }
 
 function MetaInfo({ hit }: { hit: PatentHit }) {
