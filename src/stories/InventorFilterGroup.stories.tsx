@@ -7,7 +7,7 @@ import AGGREGATIONS from '../fixtures/patent-facets.json'
 type Story = StoryObj<typeof Component>
 
 const meta: Meta<typeof Component> = {
-  title: 'Components/FacetFilterGroup',
+  title: 'Components/InventorFilterGroup',
   component: Component,
   decorators: [],
   args: {
@@ -19,4 +19,4 @@ const meta: Meta<typeof Component> = {
 
 export default meta
 
-export const FacetFilterGroup: Story = {}
+export const InventorFilterGroup: Story = {}
