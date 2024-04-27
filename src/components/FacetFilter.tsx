@@ -72,9 +72,10 @@ export function FacetFilter({
   }
 
   const handleCheckAll = () => {
+    const isAllChecked = buckets.filter((bucket) => bucket.checked === false).length === 0
     setBuckets(
       buckets.map((bucket) => {
-        return { ...bucket, checked: true }
+        return { ...bucket, checked: !isAllChecked }
       })
     )
   }
